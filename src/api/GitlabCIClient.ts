@@ -174,7 +174,6 @@ export class GitlabCIClient implements GitlabCIApi {
 				{},
 			);
 			projectDetails = await this.callApi<Object>(
-				'projects/' + encodeURIComponent(projectSlug),
 				'projects/' + projectSearch.find(p => p.path_with_namespace === projectSlug).id,
 				{},
 			);
