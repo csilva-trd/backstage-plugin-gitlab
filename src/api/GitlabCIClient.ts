@@ -166,15 +166,10 @@ export class GitlabCIClient implements GitlabCIApi {
 	}
 
 	async getProjectDetails(projectSlug?: string): Promise<Object | undefined> {
-		let projectSearch: any;
 		let projectDetails: any;
 		if (projectSlug) {
-			projectSearch = await this.callApi<Object>(
-				'projects?search=' + projectSlug.split("/").pop(),
-				{},
-			);
 			projectDetails = await this.callApi<Object>(
-				'projects/' + projectSearch.find(p => p.path_with_namespace === projectSlug).id,
+				'projects/' + encodeURIComponent(projectSlug),
 				{},
 			);
 		}
